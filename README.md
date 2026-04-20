@@ -1,38 +1,31 @@
-# Diabetic Retinopathy Severity Grading — APTOS 2019
+# Explainable Spatio-Temporal Traffic Congestion Prediction
 
-A deep learning model to classify the severity of diabetic retinopathy from retinal fundus images using EfficientNet-B4 with transfer learning and explainability via Grad-CAM.
+A hybrid CNN-LSTM deep learning model for multi-step traffic congestion forecasting with SHAP-based explainability, making predictions interpretable for urban planners and traffic management systems.
 
 ## Overview
-Diabetic retinopathy is a leading cause of blindness. Early and accurate grading is critical for timely treatment. This project builds an ordinal multi-class classifier on the APTOS 2019 Blindness Detection dataset, grading retinal images across 5 severity levels:
-- 0: No DR
-- 1: Mild
-- 2: Moderate
-- 3: Severe
-- 4: Proliferative DR
-
-## Dataset
-- **Source:** [APTOS 2019 Blindness Detection — Kaggle](https://www.kaggle.com/competitions/aptos2019-blindness-detection)
-- **Size:** 3,662 training images
-- **Format:** Fundus photographs (.png)
+Traffic congestion prediction is a critical urban challenge. This project combines CNNs for spatial road-network feature extraction and LSTMs for temporal pattern learning, with SHAP integrated to explain which features drive congestion — bridging the gap between predictive accuracy and interpretability.
 
 ## Approach
-- **Model:** EfficientNet-B4 pretrained on ImageNet, fine-tuned with differential learning rates
-- **Class Imbalance:** Addressed using SMOTE oversampling
-- **Evaluation Metric:** Cohen's Quadratic Weighted Kappa (consistent with Kaggle scoring)
-- **Explainability:** Grad-CAM saliency maps to highlight pathological retinal regions
+- **Architecture:** Hybrid CNN-LSTM — CNN layers extract spatial features from road network data; LSTM layers model temporal dependencies across time steps
+- **Explainability:** SHAP (SHapley Additive exPlanations) for feature-level attribution, identifying top drivers such as time-of-day, weather overlays, and incident proximity
+- **Evaluation:** RMSE and MAE for forecasting accuracy
 - **Platform:** Google Colab with GPU runtime
 
 ## Results
-- Validation accuracy: ~88% (fine-tuning in progress with fully unfrozen backbone targeting 90%+)
+- Prediction accuracy: ~91%
+- Full explainability pipeline maintained alongside predictive performance
 
 ## Tech Stack
-Python · TensorFlow/Keras · EfficientNet-B4 · Grad-CAM · SMOTE · Pandas · NumPy · Matplotlib · Google Colab
+Python · TensorFlow · Keras · CNN · LSTM · SHAP · Pandas · NumPy · Matplotlib · Google Colab
 
 ## Files
-- `diabetic_retinopathy_grading.ipynb` — Main training and evaluation notebook
+- `traffic_congestion_prediction.ipynb` — Main model training, evaluation, and SHAP explainability notebook
+- `literature_survey.pdf` *(optional)* — Research proposal covering 15+ state-of-the-art spatio-temporal and XAI papers
 
 ## How to Run
-1. Download the APTOS 2019 dataset from Kaggle
-2. Upload to Google Drive
-3. Open the notebook in Google Colab and mount Drive
-4. Run all cells with GPU runtime enabled (Runtime → Change runtime type → T4 GPU)
+1. Open the notebook in Google Colab
+2. Enable GPU runtime (Runtime → Change runtime type → T4 GPU)
+3. Run all cells in order
+
+## Research Context
+This project is part of an academic research proposal on explainable AI for urban traffic systems. The literature survey covers 15+ papers on spatio-temporal modelling and explainable AI methods including SHAP, LIME, and attention-based interpretability.
